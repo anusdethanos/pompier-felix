@@ -4,7 +4,6 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
 
     QObject::connect(
@@ -14,8 +13,7 @@ int main(int argc, char *argv[])
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
 
-    // Charger depuis le .qrc
-    engine.load(QUrl(QStringLiteral("qrc:/ui/App.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/Pompier-Qt-Quick/ui/App.qml")));
 
     return app.exec();
 }

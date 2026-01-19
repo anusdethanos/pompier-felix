@@ -54,9 +54,9 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    CaserneCard {}
-                    MoyensCard {}
-                    RenfortsCard {}
+                    //CaserneCard {}
+                    //MoyensCard {}
+                    //RenfortsCard {}
                 }
             }
         }

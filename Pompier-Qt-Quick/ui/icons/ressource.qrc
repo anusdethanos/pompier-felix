@@ -1,12 +1,14 @@
 <RCC>
-    <file>ui/App.qml</file>
-    <file>ui/Header.qml</file>
-    <file>ui/Tabs.qml</file>
-    <file>ui/InterventionForm.qml</file>
-    <file>ui/InfoCard.qml</file>
+    <qresource prefix="/">
+        <file>ui/App.qml</file>
+        <file>ui/Header.qml</file>
+        <file>ui/Tabs.qml</file>
+        <file>ui/InterventionForm.qml</file>
+        <file>ui/InfoCard.qml</file>
 
-    <file>ui/icons/help.svg</file>
-    <file>ui/icons/menu.svg</file>
-    <file>ui/icons/check.svg</file>
-    <file>ui/icons/clock.svg</file>
+        <file>ui/icons/help.svg</file>
+        <file>ui/icons/menu.svg</file>
+        <file>ui/icons/check.svg</file>
+        <file>ui/icons/clock.svg</file>
+    </qresource>
 </RCC>

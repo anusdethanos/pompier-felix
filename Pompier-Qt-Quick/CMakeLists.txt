@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.16)
-
 project(Pompier-Qt-Quick VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -10,7 +9,7 @@ find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 # Setup standard Qt project
 qt_standard_project_setup(REQUIRES 6.8)
 
-# --- 1. Ajouter l’exécutable ---
+# --- 1. Ajouter l'exécutable ---
 qt_add_executable(appPompier-Qt-Quick
     main.cpp
 )
@@ -19,7 +18,6 @@ qt_add_executable(appPompier-Qt-Quick
 qt_add_qml_module(appPompier-Qt-Quick
     URI Pompier-Qt-Quick
     VERSION 1.0
-
     # Tous tes fichiers QML
     QML_FILES
         ui/App.qml
@@ -27,16 +25,12 @@ qt_add_qml_module(appPompier-Qt-Quick
         ui/Tabs.qml
         ui/InterventionForm.qml
         ui/InfoCard.qml
-        # ui/CaserneCard.qml       # si tu l’as
-        # ui/RenfortsCard.qml      # si tu l’as
-
     # Ressources (images, icônes)
     RESOURCES
         ui/icons/help.svg
         ui/icons/menu.svg
         ui/icons/check.svg
         ui/icons/clock.svg
-        RESOURCES ui/icons/ressource.qrc
 )
 
 # --- 3. Propriétés pour macOS/Windows ---

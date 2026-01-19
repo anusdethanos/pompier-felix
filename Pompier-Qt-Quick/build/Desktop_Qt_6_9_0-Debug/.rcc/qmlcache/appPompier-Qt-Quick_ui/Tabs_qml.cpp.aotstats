@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 16,
-                        "durationMicroseconds": 230,
+                        "durationMicroseconds": 225,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "model",
                         "line": 16
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 24,
-                        "durationMicroseconds": 142,
+                        "durationMicroseconds": 158,
                         "errorMessage": "Cannot access value for name root",
                         "functionName": "color",
                         "line": 31
