@@ -26,10 +26,11 @@ private slots:
     void onGeocodingFinished(QNetworkReply *reply);
 
 signals:
-    void coordonneesRecues(double latitude, double longitude);
+    void coordonneesRecues(double latitude, double longitude, QString code_postal);
 
 private:
     QNetworkAccessManager *manager;
 };
 
 #endif // GEOCODING_H
+

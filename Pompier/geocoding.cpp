@@ -45,17 +45,20 @@ void Geocoding::onGeocodingFinished(QNetworkReply *reply)
 
     if (jsonArray.isEmpty()) {
         qDebug() << "Adresse non trouvée";
-        emit coordonneesRecues(0.0, 0.0);
+        emit coordonneesRecues(0.0, 0.0, "0000");
         return;
     }
 
     QJsonObject jsonObject = jsonArray.first().toObject();
 
-    double lat = jsonObject.value("lat").toString().toDouble();
-    double lon = jsonObject.value("lon").toString().toDouble();
+    double      lat         = jsonObject.value("lat").toString().toDouble();
+    double      lon         = jsonObject.value("lon").toString().toDouble();
+    QString     code_postal = jsonObject.value("postcode").toString();
+
 
     qDebug() << "Latitude:" << lat << ", Longitude:" << lon;
 
-    emit coordonneesRecues(lat, lon);
+    emit coordonneesRecues(lat, lon, code_postal);
     reply->deleteLater();
 }
+

@@ -18,6 +18,8 @@ SuperviseurOPE::SuperviseurOPE(QWidget *parent)
 
     connect(ui->pushButton_adresse, &QPushButton::clicked, this, &SuperviseurOPE::getAdresse);
 
+    connect(ui->pushButton_minDist, &QPushButton::clicked, this, &SuperviseurOPE::calculerDistanceMin);
+
 }
 
 SuperviseurOPE::~SuperviseurOPE()
@@ -34,12 +36,15 @@ void SuperviseurOPE::recalculerDistance()
     creerFicheUrgence(m_latitude, m_longitude);
 }
 
-void SuperviseurOPE::getLonLatGeocoding(double lat, double lon) {
+void SuperviseurOPE::getLonLatGeocoding(double lat, double lon, QString code_postal) {
 
-    m_latitude  = lat;
-    m_longitude = lon;
+    m_latitude   = lat;
+    m_longitude  = lon;
+    m_codepostal = code_postal;
 
     creerFicheUrgence(lat, lon);
+
+    m_casernes = ficheUrgence->recupererCasernesParDepartement(m_codepostal);
 }
 
 void SuperviseurOPE::creerFicheUrgence(double latitude_sinistre, double longitude_sinistre)
@@ -73,3 +78,12 @@ void SuperviseurOPE::getAdresse() {
 
     geocoding->obtenirCoordonnees(fullAdresse);
 }
+
+
+void SuperviseurOPE::calculerDistanceMin()
+{
+    QString mindist = ficheUrgence->calculerListCasernes(m_casernes);
+
+    ui->label_minDist->setText(mindist);
+}
+

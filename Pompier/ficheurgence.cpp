@@ -3,7 +3,7 @@
 FicheUrgence::FicheUrgence(QObject *parent)
     : QObject(parent)
 {
-
+    base = QSqlDatabase::addDatabase("QSQLITE");
 }
 
 void FicheUrgence::connecterBDD()
@@ -39,3 +39,80 @@ double FicheUrgence::calculerHaversine(double longitude_s, double latitude_s, do
 
     return d; // return la distance entre la caserne et le sinistre
 }
+
+QList<QMap<QString, QVariant>> FicheUrgence::recupererCasernesParDepartement(const QString &departement)
+{
+    QList<QMap<QString, QVariant>> casernes;
+
+    QString queryStr = "SELECT * FROM casernes_tmp WHERE `addr:postcode` LIKE ?";
+    QSqlQuery query(base);
+
+    // Extraire les 2 premiers chiffres du code postal
+    QString dept = departement.left(2);
+    query.bindValue(0, dept + "%");
+
+    qDebug() << "Recherche casernes pour département:" << dept;
+
+    if (!query.exec()) {
+        qDebug() << "Erreur SQL : " << query.lastError().text();
+        return casernes;
+    }
+
+    int count = 0;
+    while (query.next()) {
+        QMap<QString, QVariant> caserne;
+        caserne["@id"] = query.value("@id");
+        caserne["name"] = query.value("name");
+        caserne["lat"] = query.value("lat").toDouble();
+        caserne["lon"] = query.value("lon").toDouble();
+        caserne["addr:city"] = query.value("addr:city");
+        caserne["addr:postcode"] = query.value("addr:postcode");
+        caserne["operator"] = query.value("operator");
+
+        casernes.append(caserne);
+        count++;
+    }
+
+    qDebug() << "Nombre de casernes trouvées:" << count;
+    return casernes;
+}
+
+QString FicheUrgence::calculerListCasernes(QList<QMap<QString, QVariant>> casernes)
+{
+    if (casernes.isEmpty()) {
+        qDebug() << "Aucune caserne dans la liste!";
+        return "Aucune caserne trouvée";
+    }
+
+    double latSinistre = 48.75397683641097;
+    double lonSinistre = -3.4169741492299357;
+
+    double distanceMin = std::numeric_limits<double>::max();
+    QString casernePlusProche = "Aucune";
+
+    for (const auto &caserne : casernes)
+    {
+        double lat = caserne["lat"].toDouble();
+        double lon = caserne["lon"].toDouble();
+
+        if (lat == 0 || lon == 0) {
+            qDebug() << "Coordonnées invalides pour:" << caserne["name"].toString();
+            continue;
+        }
+
+        double distance = calculerHaversine(lonSinistre, latSinistre, lon, lat);
+
+        qDebug() << "Caserne:" << caserne["name"].toString() << "Distance:" << distance << "km";
+
+        if (distance < distanceMin)
+        {
+            distanceMin = distance;
+            casernePlusProche = caserne["name"].toString();
+        }
+    }
+
+    qDebug() << "Caserne la plus proche :" << casernePlusProche << "Distance :" << distanceMin << "km";
+
+    return casernePlusProche + " (" + QString::number(distanceMin, 'f', 2) + " km)";
+}
+
