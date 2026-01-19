@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SuperviseurOPE</class>
+ <widget class="QMainWindow" name="SuperviseurOPE">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SuperviseurOPE</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton_calcule">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>140</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>calcule</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_test">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>130</y>
+      <width>261</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>distance harversine</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>50</y>
+      <width>161</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>157</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>90</y>
+      <width>161</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rue saint guirec</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>130</y>
+      <width>161</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>22700</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_adresse">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>70</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_minDist">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>400</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_minDist">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>400</y>
+      <width>241</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
