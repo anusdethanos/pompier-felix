@@ -1,0 +1,9 @@
+-rootPath
+/home/felix/Pompier
+-cmake-output
+-output-file
+/home/felix/Pompier/build/Desktop_Qt_6_9_0-Debug/.qt/qml_imports/Pompier_build.cmake
+-importPath
+/home/felix/Pompier/build/Desktop_Qt_6_9_0-Debug
+-importPath
+/home/felix/Qt/6.9.0/gcc_64/qml
