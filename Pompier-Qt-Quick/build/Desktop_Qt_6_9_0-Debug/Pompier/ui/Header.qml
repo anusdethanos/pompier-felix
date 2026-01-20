@@ -60,36 +60,15 @@ Rectangle {
         Item { Layout.fillWidth: true }
 
         // Status Badge
-        Rectangle {
-            width: 120
-            height: 36
-            radius: 18
-            color: "#059669"
+        StatusBadge {
+            id: badgeStatut
+        }
 
-            RowLayout {
-                anchors.centerIn: parent
-                spacing: 6
+        Connections {
+            target: superviseur
 
-                Rectangle {
-                    width: 8
-                    height: 8
-                    radius: 4
-                    color: "#d1fae5"
-
-                    SequentialAnimation on opacity {
-                        running: true
-                        loops: Animation.Infinite
-                        NumberAnimation { from: 1; to: 0.3; duration: 800 }
-                        NumberAnimation { from: 0.3; to: 1; duration: 800 }
-                    }
-                }
-
-                Text {
-                    text: "En Service"
-                    color: "white"
-                    font.pixelSize: 13
-                    font.bold: true
-                }
+            function onStatutBDD(ok) {
+                badgeStatut.enService = ok
             }
         }
 

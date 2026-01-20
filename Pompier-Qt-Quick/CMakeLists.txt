@@ -42,6 +42,7 @@ qt_add_qml_module(appPompier
         ui/Tabs.qml
         ui/InterventionForm.qml
         ui/InfoCard.qml
+        ui/StatusBadge.qml
 
     RESOURCES
         ui/icons/help.svg
@@ -52,6 +53,7 @@ qt_add_qml_module(appPompier
     SOURCES
         ${BACKEND_SOURCES}
 )
+
 
 # --- Link Qt libs ---
 target_link_libraries(appPompier

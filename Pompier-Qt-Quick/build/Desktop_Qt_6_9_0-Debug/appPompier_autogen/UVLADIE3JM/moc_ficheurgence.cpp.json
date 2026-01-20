@@ -5,6 +5,20 @@
             "lineNumber": 10,
             "object": true,
             "qualifiedClassName": "FicheUrgence",
+            "signals": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "ok",
+                            "type": "bool"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "statutBDD",
+                    "returnType": "void"
+                }
+            ],
             "superClasses": [
                 {
                     "access": "public",

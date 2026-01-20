@@ -19,6 +19,11 @@ public:
     ~SuperviseurOPE();
 
     Q_INVOKABLE void        getAdresse(QString rue);
+    Q_INVOKABLE void        getType(QString type_intervention);
+    Q_INVOKABLE void        getGravite(int niveau_gravite);
+    Q_INVOKABLE void        getNbVictime(int nb_victime);
+
+    Q_INVOKABLE void        getCommentaire(QString commantaire);
 
     Q_INVOKABLE void        recalculerDistance();
 
@@ -29,6 +34,7 @@ signals:
 private slots:
     void        getLonLatGeocoding(double lat, double lon, QString code_postal);
     void        calculerDistanceMin();
+    void        creerFicheUrgence();
 
 private:
     FicheUrgence    *ficheUrgence = nullptr;
@@ -39,6 +45,8 @@ private:
     double          m_latitude   = 0.0;
     double          m_longitude  = 0.0;
     QString         m_codepostal;
+
+    QStringList         m_type_intervention;
 
     void creerFicheUrgence(double latitude, double longitude);
 };

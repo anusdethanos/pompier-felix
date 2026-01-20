@@ -20,7 +20,6 @@ private:
 
     const double     _R =  6371.0;
 
-
 public:
     FicheUrgence();
 
@@ -28,10 +27,14 @@ public:
 
     void       connecterBDD();
     void       deconnecterBDD();
+    void       connexionBDDSatut();
 
     QString    calculerListCasernes(QList<QMap<QString, QVariant>> casernes, double latSinistre, double lonSinistre);
 
     double     calculerHaversine(double longitude_s, double lattitude_s, double longitude_t, double lattitude_t);
+
+signals:
+    void       statutBDD(bool ok);
 
 
 };

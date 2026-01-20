@@ -316,15 +316,6 @@ PKG_CONFIG_ARGN:STRING=
 PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
 
 //Value Computed by CMake
-Pompier-Qt-Quick_BINARY_DIR:STATIC=/home/felix/Documents/projet/Pompier-Qt-Quick/build/Desktop_Qt_6_9_0-Debug
-
-//Value Computed by CMake
-Pompier-Qt-Quick_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Pompier-Qt-Quick_SOURCE_DIR:STATIC=/home/felix/Documents/projet/Pompier-Qt-Quick
-
-//Value Computed by CMake
 PompierQtQuick_BINARY_DIR:STATIC=/home/felix/Documents/projet/Pompier-Qt-Quick/build/Desktop_Qt_6_9_0-Debug
 
 //Value Computed by CMake
@@ -348,9 +339,6 @@ QT_CREATOR_SOURCE_GROUPS:BOOL=ON
 
 //No help, variable specified on the command line.
 QT_QMAKE_EXECUTABLE:FILEPATH=/home/felix/Qt/6.9.0/gcc_64/bin/qmake
-
-//The directory containing a CMake configuration file for Qt65CompatGraphicalEffects.
-Qt65CompatGraphicalEffects_DIR:PATH=Qt65CompatGraphicalEffects_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for Qt6ConcurrentPrivate.
 Qt6ConcurrentPrivate_DIR:PATH=/home/felix/Qt/6.9.0/gcc_64/lib/cmake/Qt6ConcurrentPrivate
@@ -1507,7 +1495,7 @@ Vulkan_LIBRARY-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
-_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/tmp
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
 __pkg_config_checked_PKG_XKB:INTERNAL=1
 __qt_qml_macros_module_base_dir:INTERNAL=/home/felix/Qt/6.9.0/gcc_64/lib/cmake/Qt6Qml
 

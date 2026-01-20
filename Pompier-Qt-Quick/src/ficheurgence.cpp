@@ -24,6 +24,12 @@ void FicheUrgence::deconnecterBDD()
     QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 }
 
+void FicheUrgence::connexionBDDSatut()
+{
+    emit statutBDD(base.isOpen());
+}
+
+
 double FicheUrgence::calculerHaversine(double longitude_s, double latitude_s, double longitude_t, double latitude_t)
 {
     // Conversion degrés vers radians
@@ -128,6 +134,6 @@ QString FicheUrgence::calculerListCasernes(QList<QMap<QString, QVariant>> casern
     }
 
     qDebug() << "Caserne la plus proche :" << casernePlusProche << "Distance :" << distanceMin << "km";
-    return casernePlusProche + "\n(" + QString::number(distanceMin, 'f', 2) + " km)";
+    return casernePlusProche + "\n(" + QString::number(distanceMin, ' ', 2) + " km)";
 }
 

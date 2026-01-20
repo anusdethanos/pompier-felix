@@ -38,10 +38,17 @@ template <> constexpr inline auto FicheUrgence::qt_create_metaobjectdata<qt_meta
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "FicheUrgence"
+        "FicheUrgence",
+        "statutBDD",
+        "",
+        "ok"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'statutBDD'
+        QtMocHelpers::SignalData<void(bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 3 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -63,10 +70,16 @@ Q_CONSTINIT const QMetaObject FicheUrgence::staticMetaObject = { {
 void FicheUrgence::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<FicheUrgence *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->statutBDD((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (FicheUrgence::*)(bool )>(_a, &FicheUrgence::statutBDD, 0))
+            return;
+    }
 }
 
 const QMetaObject *FicheUrgence::metaObject() const
@@ -85,6 +98,24 @@ void *FicheUrgence::qt_metacast(const char *_clname)
 int FicheUrgence::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 1)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 1;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void FicheUrgence::statutBDD(bool _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
 QT_WARNING_POP

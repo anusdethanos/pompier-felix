@@ -17,7 +17,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 54,
+				"line" : 75,
 				"parent" : 0
 			}
 		]
@@ -30,9 +30,9 @@
 			"destination" : "bin",
 			"paths" : 
 			[
-				"appPompier-Qt-Quick"
+				"appPompier"
 			],
-			"targetId" : "appPompier-Qt-Quick::@6890427a1f51a3e7e1df",
+			"targetId" : "appPompier::@6890427a1f51a3e7e1df",
 			"targetIndex" : 5,
 			"type" : "target"
 		}

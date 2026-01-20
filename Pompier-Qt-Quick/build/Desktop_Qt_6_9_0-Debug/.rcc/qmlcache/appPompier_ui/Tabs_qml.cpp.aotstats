@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 23,
-                        "durationMicroseconds": 62,
+                        "durationMicroseconds": 179,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 15
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 20,
-                        "durationMicroseconds": 257,
+                        "durationMicroseconds": 427,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "model",
                         "line": 19
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 41,
-                        "durationMicroseconds": 30,
+                        "durationMicroseconds": 32,
                         "errorMessage": "Cannot access value for name modelData",
                         "functionName": "isActive",
                         "line": 30
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 28,
-                        "durationMicroseconds": 29,
+                        "durationMicroseconds": 31,
                         "errorMessage": "Cannot access value for name tabButton",
                         "functionName": "color",
                         "line": 34
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 32,
-                        "durationMicroseconds": 35,
+                        "durationMicroseconds": 36,
                         "errorMessage": "Cannot access value for name tabButton",
                         "functionName": "color",
                         "line": 46
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 31,
-                        "durationMicroseconds": 163,
+                        "durationMicroseconds": 165,
                         "errorMessage": "Cannot access value for name modelData",
                         "functionName": "text",
                         "line": 58
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 31,
-                        "durationMicroseconds": 145,
+                        "durationMicroseconds": 146,
                         "errorMessage": "Cannot access value for name modelData",
                         "functionName": "text",
                         "line": 63
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 32,
-                        "durationMicroseconds": 22,
+                        "durationMicroseconds": 24,
                         "errorMessage": "Cannot access value for name tabButton",
                         "functionName": "color",
                         "line": 66
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 43,
-                        "durationMicroseconds": 88,
+                        "durationMicroseconds": 90,
                         "errorMessage": "Cannot access value for name Qt",
                         "functionName": "alignment",
                         "line": 67
@@ -134,7 +134,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 36,
-                        "durationMicroseconds": 24,
+                        "durationMicroseconds": 23,
                         "errorMessage": "Cannot access value for name tabButton",
                         "functionName": "color",
                         "line": 83

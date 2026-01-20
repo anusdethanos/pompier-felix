@@ -362,6 +362,7 @@ Rectangle {
 
                         onClicked: {
                             superviseur.getAdresse(champsAdresse.text)
+                            superviseur.getType(interventionType.text)
                         }
                     }
                 }

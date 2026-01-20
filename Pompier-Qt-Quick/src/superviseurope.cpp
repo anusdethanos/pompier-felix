@@ -32,6 +32,17 @@ void SuperviseurOPE::getAdresse(QString rue)
     geocoding->obtenirCoordonnees(fullAdresse);
 }
 
+void SuperviseurOPE::getType(QString type_intervention)
+{
+
+    m_type_intervention << "incendie" << "accident" << "inondation" << "secoursPersone";
+    // 1 = incendie
+    // 2 = accident
+    // 3 = inondation
+    // 4 = secours à la personne
+
+}
+
 void SuperviseurOPE::getLonLatGeocoding(double lat, double lon, QString code_postal)
 {
     m_latitude   = lat;

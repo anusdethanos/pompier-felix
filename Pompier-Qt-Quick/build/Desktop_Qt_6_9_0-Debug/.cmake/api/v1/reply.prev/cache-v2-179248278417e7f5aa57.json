@@ -1059,7 +1059,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "PompierQtQuick"
+			"value" : "Pompier-Qt-Quick"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION",
@@ -1995,42 +1995,6 @@
 		},
 		{
 			"name" : "Pompier-Qt-Quick_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/felix/Documents/projet/Pompier-Qt-Quick"
-		},
-		{
-			"name" : "PompierQtQuick_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/felix/Documents/projet/Pompier-Qt-Quick/build/Desktop_Qt_6_9_0-Debug"
-		},
-		{
-			"name" : "PompierQtQuick_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "PompierQtQuick_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -5666,18 +5630,6 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "QT_FEATURE_sqlmodel",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Qt feature: sqlmodel (from target Qt6::Sql)"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "ON"
-		},
-		{
 			"name" : "QT_FEATURE_sse2",
 			"properties" : 
 			[
@@ -6782,18 +6734,6 @@
 			"value" : "/home/felix/Qt/6.9.0/gcc_64/bin/qmake"
 		},
 		{
-			"name" : "Qt65CompatGraphicalEffects_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt65CompatGraphicalEffects."
-				}
-			],
-			"type" : "PATH",
-			"value" : "Qt65CompatGraphicalEffects_DIR-NOTFOUND"
-		},
-		{
 			"name" : "Qt6ConcurrentPrivate_DIR",
 			"properties" : 
 			[
@@ -7236,30 +7176,6 @@
 			],
 			"type" : "PATH",
 			"value" : "/home/felix/Qt/6.9.0/gcc_64/lib/cmake/Qt6Quick"
-		},
-		{
-			"name" : "Qt6SqlPrivate_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt6SqlPrivate."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/felix/Qt/6.9.0/gcc_64/lib/cmake/Qt6SqlPrivate"
-		},
-		{
-			"name" : "Qt6Sql_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt6Sql."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/felix/Qt/6.9.0/gcc_64/lib/cmake/Qt6Sql"
 		},
 		{
 			"name" : "Qt6_DIR",
