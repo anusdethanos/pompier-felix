@@ -201,67 +201,25 @@ Rectangle {
                 // Propriété de filtre
                 property string statusFilter: ""
 
-                // Filtre dynamique
-                // model: ListModel {
-                //     id: interventionModel
-
-                //     // Données d'exemple
-                //     ListElement {
-                //         //interventionID: int001
-                //         adresse: "12 Rue de la République, 75001 Paris"
-                //         type: "Incendie"
-                //         gravite: "Élevée"
-                //         date: "2026-01-26"
-                //         heure: "14:32"
-                //         statut: "en_cours"
-                //         victimes: 2
-                //     }
-
-                //     ListElement {
-                //         //interventionID: int002
-                //         adresse: "45 Avenue des Champs, 75008 Paris"
-                //         type: "Accident"
-                //         gravite: "Moyen"
-                //         date: "2026-01-26"
-                //         heure: "13:15"
-                //         statut: "en_cours"
-                //         victimes: 3
-                //     }
-
-                //     ListElement {
-                //         //interventionID: int003
-                //         adresse: "7 Boulevard Saint-Germain, 75005 Paris"
-                //         type: "Malaise"
-                //         gravite: "Faible"
-                //         date: "2026-01-25"
-                //         heure: "10:45"
-                //         statut: "terminee"
-                //         victimes: 1
-                //     }
-
-                //     ListElement {
-                //         //interventionID: int004
-                //         adresse: "99 Rue de Rivoli, 75004 Paris"
-                //         type: "Fuite gaz"
-                //         gravite: "Élevée"
-                //         date: "2026-01-24"
-                //         heure: "09:20"
-                //         statut: "terminee"
-                //         victimes: 0
-                //     }
-                // }
-
-
                 delegate: Rectangle {
                     width: parent.width
-                    height: 120
+                    height: itemVisible ? 120 : 0
+                    opacity: itemVisible ? 1 : 0
+                    visible: itemVisible
                     color: "#ffffff"
                     border.color: "#e5e7eb"
                     border.width: 1
                     radius: 8
 
                     // Filtre basé sur le statut
-                    visible: listView.statusFilter === "" || statut === listView.statusFilter
+                    property bool itemVisible: listView.statusFilter === "" || model.statut === listView.statusFilter
+
+                    Behavior on height {
+                        NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+                    }
+                    Behavior on opacity {
+                        NumberAnimation { duration: 200 }
+                    }
 
                     RowLayout {
                         anchors.fill: parent
@@ -274,7 +232,7 @@ Rectangle {
                             height: 8
                             radius: 4
                             Layout.alignment: Qt.AlignTop
-                            color: statut === "en_cours" ? "#2563eb" : "#059669"
+                            color: model.statut === "en_cours" ? "#2563eb" : "#059669"
                         }
 
                         // Main content
@@ -288,14 +246,14 @@ Rectangle {
                                 Layout.fillWidth: true
 
                                 Text {
-                                    text: "ID: " + id
+                                    text: "ID: " + model.id
                                     font.pixelSize: 12
                                     color: "#6b7280"
                                     font.bold: true
                                 }
 
                                 Text {
-                                    text: type
+                                    text: model.type
                                     font.pixelSize: 13
                                     color: "#374151"
                                     font.bold: true
@@ -303,14 +261,14 @@ Rectangle {
                                 }
 
                                 Text {
-                                    text: heure
+                                    text: model.heure
                                     font.pixelSize: 12
                                     color: "#6b7280"
                                 }
                             }
 
                             Text {
-                                text: adresse
+                                text: model.adresse
                                 font.pixelSize: 13
                                 color: "#374151"
                                 Layout.fillWidth: true
@@ -327,13 +285,13 @@ Rectangle {
                                     width: 80
                                     height: 24
                                     radius: 4
-                                    color: gravite === "Élevée" ? "#fee2e2" : (gravite === "Moyen" ? "#fef3c7" : "#d1fae5")
+                                    color: model.gravite === "Élevée" ? "#fee2e2" : (model.gravite === "Moyen" ? "#fef3c7" : "#d1fae5")
 
                                     Text {
                                         anchors.centerIn: parent
-                                        text: "🔴 " + gravite
+                                        text: "🔴 " + model.gravite
                                         font.pixelSize: 11
-                                        color: gravite === "Élevée" ? "#991b1b" : (gravite === "Moyen" ? "#92400e" : "#065f46")
+                                        color: model.gravite === "Élevée" ? "#991b1b" : (model.gravite === "Moyen" ? "#92400e" : "#065f46")
                                     }
                                 }
 
@@ -341,13 +299,13 @@ Rectangle {
                                     width: 100
                                     height: 24
                                     radius: 4
-                                    color: statut === "en_cours" ? "#dbeafe" : "#d1fae5"
+                                    color: model.statut === "en_cours" ? "#dbeafe" : "#d1fae5"
 
                                     Text {
                                         anchors.centerIn: parent
-                                        text: (statut === "en_cours" ? "⏱️ En cours" : "✅ Terminée")
+                                        text: (model.statut === "en_cours" ? "⏱️ En cours" : "✅ Terminée")
                                         font.pixelSize: 11
-                                        color: statut === "en_cours" ? "#1e40af" : "#065f46"
+                                        color: model.statut === "en_cours" ? "#1e40af" : "#065f46"
                                     }
                                 }
 
@@ -359,7 +317,7 @@ Rectangle {
 
                                     Text {
                                         anchors.centerIn: parent
-                                        text: "👥 " + victimes
+                                        text: "👥 " + model.victimes
                                         font.pixelSize: 11
                                         color: "#6b21a8"
                                     }
@@ -375,7 +333,7 @@ Rectangle {
                         hoverEnabled: true
                         onEntered: parent.color = "#f9fafb"
                         onExited: parent.color = "#ffffff"
-                        onClicked: console.log("Intervention " + id + " sélectionnée")
+                        onClicked: console.log("Intervention " + model.id + " sélectionnée")
                     }
                 }
             }
