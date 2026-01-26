@@ -62,14 +62,14 @@ QList<QMap<QString, QVariant>> FicheUrgence::recupererCasernesParDepartement(QSt
     QSqlQuery query(base);
 
     if (!query.prepare(queryStr)) {
-        qDebug() << "Erreur prepare :" << query.lastError().text();
+        //qDebug() << "Erreur prepare :" << query.lastError().text();
         return casernes;
     }
 
     query.bindValue(0, pattern);
 
     if (!query.exec()) {
-        qDebug() << "Erreur SQL :" << query.lastError().text();
+        //qDebug() << "Erreur SQL :" << query.lastError().text();
         return casernes;
     }
 
@@ -119,12 +119,12 @@ QString FicheUrgence::calculerListCasernes(QList<QMap<QString, QVariant>> casern
         double lon = caserne["lon"].toDouble();
 
         if (lat == 0 || lon == 0) {
-            qDebug() << "Coordonnées invalides pour:" << caserne["name"].toString();
+            //qDebug() << "Coordonnées invalides pour:" << caserne["name"].toString();
             continue;
         }
 
         double distance = calculerHaversine(lonSinistre, latSinistre, lon, lat);
-        qDebug() << "Caserne:" << caserne["name"].toString() << "Distance:" << distance << "km";
+        //qDebug() << "Caserne:" << caserne["name"].toString() << "Distance:" << distance << "km";
 
         if (distance < distanceMin)
         {
@@ -137,3 +137,25 @@ QString FicheUrgence::calculerListCasernes(QList<QMap<QString, QVariant>> casern
     return casernePlusProche + "\n(" + QString::number(distanceMin, ' ', 2) + " km)";
 }
 
+void FicheUrgence::enregistrerIntervention(QString _adresse,QString _casernes_assigne, QString _type, QString _gravite, QString _date, QString _heure, int _victimes, QString _commentaire)
+{
+    QString reqSQL="INSERT INTO interventions (adresse, casernes_assigne, type, gravite, date, heure, victimes, commentaire) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
+    QSqlQuery sql;
+    sql.prepare(reqSQL);
+    sql.bindValue(0, _adresse);
+    sql.bindValue(1, _casernes_assigne);
+    sql.bindValue(2, _type);
+    sql.bindValue(3, _gravite);
+    sql.bindValue(4, _date);
+    sql.bindValue(5, _heure);
+    sql.bindValue(6, _victimes);
+    sql.bindValue(7, _commentaire);
+
+    if (!sql.exec()) {
+        qDebug("Erreur ajout enregistrement dans BDD:");
+    }
+    else {
+        qDebug("enregistrement reussi:");
+    }
+}

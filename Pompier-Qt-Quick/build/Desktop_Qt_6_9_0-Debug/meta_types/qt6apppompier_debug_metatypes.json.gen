@@ -53,6 +53,10 @@
                             {
                                 "name": "code_postal",
                                 "type": "QString"
+                            },
+                            {
+                                "name": "adresse_complete",
+                                "type": "QString"
                             }
                         ],
                         "index": 0,
@@ -172,6 +176,12 @@
                         "index": 10,
                         "name": "recalculerDistance",
                         "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 11,
+                        "name": "preparerEnregistrementBDD",
+                        "returnType": "void"
                     }
                 ],
                 "object": true,
@@ -216,6 +226,10 @@
                             },
                             {
                                 "name": "code_postal",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "adresse_complete",
                                 "type": "QString"
                             }
                         ],

@@ -26,7 +26,7 @@ private slots:
     void        onGeocodingFinished(QNetworkReply *reply);
 
 signals:
-    void        coordonneesRecues(double latitude, double longitude, QString code_postal);
+    void        coordonneesRecues(double latitude, double longitude, QString code_postal, QString adresse_complete);
 
 private:
     QNetworkAccessManager *manager;

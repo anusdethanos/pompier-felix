@@ -356,6 +356,15 @@ Rectangle {
                                 border.width: 2
                             }
                         }
+
+                        Timer {
+                            interval: 60000    // 60 000 ms = 1 minute
+                            running: true
+                            repeat: true
+                            onTriggered: {
+                                dateHeure2.text = Qt.formatTime(new Date(), "HH:mm")
+                            }
+                        }
                     }
                 }
 
@@ -441,4 +450,5 @@ Rectangle {
             }
         }
     }
+
 }

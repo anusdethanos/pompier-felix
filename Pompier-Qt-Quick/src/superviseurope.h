@@ -28,13 +28,16 @@ public:
     Q_INVOKABLE void        getHeure(QString date, QString heure);
 
     Q_INVOKABLE void        recalculerDistance();
+    Q_INVOKABLE void        preparerEnregistrementBDD();
+
+
 
 signals:
     void        distanceMinCalculee(QString distance);
     void        messageInfo(QString message);
 
 private slots:
-    void        getLonLatGeocoding(double lat, double lon, QString code_postal);
+    void        getLonLatGeocoding(double lat, double lon, QString code_postal, QString adresse_complete);
     void        calculerDistanceMin();
 
 private:
@@ -46,13 +49,22 @@ private:
     double          m_latitude   = 0.0;
     double          m_longitude  = 0.0;
     QString         m_codepostal;
+    QString         m_adresse;
 
-    QStringList     m_type_intervention;
+    QStringList     m_type_intervention_tab;
     QString         m_gravite;
+    QString         m_type_intervention;
+    QString         r_caserne_assigne;
 
     QDateTime       m_dateHeure;
+    QString         r_date;
+    QString         r_heure;
+    QString         m_commentaire;
 
-    void creerFicheUrgence(double latitude, double longitude);
+    int             m_victimes;
+
+    void        creerFicheUrgence(double latitude, double longitude);
+
 };
 
 #endif

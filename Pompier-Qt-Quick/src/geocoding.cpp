@@ -44,7 +44,7 @@ void Geocoding::onGeocodingFinished(QNetworkReply *reply)
 
     if (jsonArray.isEmpty()) {
         qDebug() << "Adresse non trouvée";
-        emit coordonneesRecues(0.0, 0.0, "0000");
+        emit coordonneesRecues(0.0, 0.0, "0000", " ");
         return;
     }
 
@@ -53,13 +53,16 @@ void Geocoding::onGeocodingFinished(QNetworkReply *reply)
     double      lat              = jsonObject.value("lat").toString().toDouble();
     double      lon              = jsonObject.value("lon").toString().toDouble();
 
-    QJsonObject  address         = jsonObject.value("address").toObject();
-    QString      code_postal     = address.value("postcode").toString();
+    QJsonObject  address          = jsonObject.value("address").toObject();
+    QString      code_postal      = address.value("postcode").toString();
+
+    QString      adresse_brut = jsonObject.value("display_name").toString();
+    QString      adresse_complete = adresse_brut.replace(",", "");
 
 
-    qDebug() << "Latitude:" << lat << ", Longitude:" << lon << ", code postal: " << code_postal;
+    qDebug() << "Latitude:" << lat << ", Longitude:" << lon << ", code postal: " << code_postal << ", Full addr :" << adresse_complete;
 
-    emit coordonneesRecues(lat, lon, code_postal);
+    emit coordonneesRecues(lat, lon, code_postal, adresse_complete);
     reply->deleteLater();
 }
 

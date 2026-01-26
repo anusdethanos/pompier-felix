@@ -8,8 +8,7 @@ SuperviseurOPE::SuperviseurOPE(QObject *parent)
 
     ficheUrgence->connecterBDD();
 
-    connect(geocoding, &Geocoding::coordonneesRecues,
-            this, &SuperviseurOPE::getLonLatGeocoding);
+    connect(geocoding, &Geocoding::coordonneesRecues,this, &SuperviseurOPE::getLonLatGeocoding);
 }
 
 SuperviseurOPE::~SuperviseurOPE()
@@ -36,7 +35,9 @@ void SuperviseurOPE::getType(QString type_intervention)
 {
     qDebug() << "Type intervention reçu :" << type_intervention;
 
-    m_type_intervention << "incendie" << "accident" << "inondation" << "secoursPersone";
+    m_type_intervention = type_intervention;
+
+    //m_type_intervention_tab << "incendie" << "accident" << "inondation" << "secoursPersone";
     // 1 = incendie
     // 2 = accident
     // 3 = inondation
@@ -62,8 +63,9 @@ void SuperviseurOPE::getGravite(int niveau_gravite)
 
 void SuperviseurOPE::getNbVictime(int nb_victime)
 {
-
     qDebug() << "Nombre de victime : " <<  nb_victime;
+
+    m_victimes = nb_victime;
 
 }
 
@@ -71,14 +73,15 @@ void SuperviseurOPE::getCommentaire(QString commentaire)
 {
     qDebug() << "Commentaire lié à la fiche urgence : " <<  commentaire;
 
+    m_commentaire = commentaire;
+
 }
 
 void SuperviseurOPE::getHeure(QString date, QString heure)
 {
-    m_dateHeure = QDateTime::fromString(
-        date + " " + heure,
-        "dd/MM/yyyy HH:mm"
-        );
+    m_dateHeure = QDateTime::fromString( date + " " + heure, "dd/MM/yyyy HH:mm");
+    r_date = date;
+    r_heure = heure;
 
     if (!m_dateHeure.isValid()) {
         qDebug() << "Date/heure invalide";
@@ -88,11 +91,14 @@ void SuperviseurOPE::getHeure(QString date, QString heure)
     qDebug() << "Date/heure :" << m_dateHeure;
 }
 
-void SuperviseurOPE::getLonLatGeocoding(double lat, double lon, QString code_postal)
+void SuperviseurOPE::getLonLatGeocoding(double lat, double lon, QString code_postal, QString adresse_complete)
 {
     m_latitude   = lat;
     m_longitude  = lon;
     m_codepostal = code_postal;
+    m_adresse    = adresse_complete;
+
+    qDebug() << m_adresse << adresse_complete;
 
     creerFicheUrgence(lat, lon);
 
@@ -119,11 +125,23 @@ void SuperviseurOPE::calculerDistanceMin()
     }
 
     QString mindist = ficheUrgence->calculerListCasernes(m_casernes, m_latitude, m_longitude);
+    r_caserne_assigne = mindist;
 
     emit distanceMinCalculee(mindist);
+
+    preparerEnregistrementBDD();
 }
 
 void SuperviseurOPE::recalculerDistance()
 {
     creerFicheUrgence(m_latitude, m_longitude);
 }
+
+void SuperviseurOPE::preparerEnregistrementBDD()
+{
+    qDebug() << "Enregistrement dans la bdd: " << m_adresse << r_caserne_assigne << m_type_intervention << m_gravite << r_date << r_heure << m_victimes << m_commentaire ;
+
+    ficheUrgence->enregistrerIntervention(m_adresse, r_caserne_assigne, m_type_intervention, m_gravite, r_date, r_heure, m_victimes, m_commentaire);
+
+}
+

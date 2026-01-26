@@ -20,6 +20,10 @@
                         {
                             "name": "code_postal",
                             "type": "QString"
+                        },
+                        {
+                            "name": "adresse_complete",
+                            "type": "QString"
                         }
                     ],
                     "index": 0,

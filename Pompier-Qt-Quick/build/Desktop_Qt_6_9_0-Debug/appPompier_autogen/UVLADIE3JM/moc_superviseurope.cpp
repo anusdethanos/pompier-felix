@@ -49,6 +49,7 @@ template <> constexpr inline auto SuperviseurOPE::qt_create_metaobjectdata<qt_me
         "lat",
         "lon",
         "code_postal",
+        "adresse_complete",
         "calculerDistanceMin",
         "getAdresse",
         "rue",
@@ -63,7 +64,8 @@ template <> constexpr inline auto SuperviseurOPE::qt_create_metaobjectdata<qt_me
         "getHeure",
         "date",
         "heure",
-        "recalculerDistance"
+        "recalculerDistance",
+        "preparerEnregistrementBDD"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -76,37 +78,39 @@ template <> constexpr inline auto SuperviseurOPE::qt_create_metaobjectdata<qt_me
             { QMetaType::QString, 5 },
         }}),
         // Slot 'getLonLatGeocoding'
-        QtMocHelpers::SlotData<void(double, double, QString)>(6, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Double, 7 }, { QMetaType::Double, 8 }, { QMetaType::QString, 9 },
+        QtMocHelpers::SlotData<void(double, double, QString, QString)>(6, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Double, 7 }, { QMetaType::Double, 8 }, { QMetaType::QString, 9 }, { QMetaType::QString, 10 },
         }}),
         // Slot 'calculerDistanceMin'
-        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
         // Method 'getAdresse'
-        QtMocHelpers::MethodData<void(QString)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 12 },
+        QtMocHelpers::MethodData<void(QString)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
         }}),
         // Method 'getType'
-        QtMocHelpers::MethodData<void(QString)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 14 },
+        QtMocHelpers::MethodData<void(QString)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 15 },
         }}),
         // Method 'getGravite'
-        QtMocHelpers::MethodData<void(int)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 16 },
+        QtMocHelpers::MethodData<void(int)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 17 },
         }}),
         // Method 'getNbVictime'
-        QtMocHelpers::MethodData<void(int)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 18 },
+        QtMocHelpers::MethodData<void(int)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 19 },
         }}),
         // Method 'getCommentaire'
-        QtMocHelpers::MethodData<void(QString)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 20 },
+        QtMocHelpers::MethodData<void(QString)>(20, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 21 },
         }}),
         // Method 'getHeure'
-        QtMocHelpers::MethodData<void(QString, QString)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 22 }, { QMetaType::QString, 23 },
+        QtMocHelpers::MethodData<void(QString, QString)>(22, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 23 }, { QMetaType::QString, 24 },
         }}),
         // Method 'recalculerDistance'
-        QtMocHelpers::MethodData<void()>(24, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::MethodData<void()>(25, 2, QMC::AccessPublic, QMetaType::Void),
+        // Method 'preparerEnregistrementBDD'
+        QtMocHelpers::MethodData<void()>(26, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -132,7 +136,7 @@ void SuperviseurOPE::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         switch (_id) {
         case 0: _t->distanceMinCalculee((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 1: _t->messageInfo((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 2: _t->getLonLatGeocoding((*reinterpret_cast< std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 2: _t->getLonLatGeocoding((*reinterpret_cast< std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4]))); break;
         case 3: _t->calculerDistanceMin(); break;
         case 4: _t->getAdresse((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 5: _t->getType((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
@@ -141,6 +145,7 @@ void SuperviseurOPE::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 8: _t->getCommentaire((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 9: _t->getHeure((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 10: _t->recalculerDistance(); break;
+        case 11: _t->preparerEnregistrementBDD(); break;
         default: ;
         }
     }
@@ -171,14 +176,14 @@ int SuperviseurOPE::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 12;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 12)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 12;
     }
     return _id;
 }

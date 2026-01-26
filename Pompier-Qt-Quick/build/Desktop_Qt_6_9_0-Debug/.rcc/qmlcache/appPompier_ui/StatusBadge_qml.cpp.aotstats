@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 12,
-                        "durationMicroseconds": 203,
+                        "durationMicroseconds": 207,
                         "errorMessage": "",
                         "functionName": "color",
                         "line": 13
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 20,
-                        "durationMicroseconds": 33,
+                        "durationMicroseconds": 35,
                         "errorMessage": "Cannot access value for name enService",
                         "functionName": "color",
                         "line": 23
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 24,
-                        "durationMicroseconds": 39,
+                        "durationMicroseconds": 43,
                         "errorMessage": "",
                         "functionName": "loops",
                         "line": 27

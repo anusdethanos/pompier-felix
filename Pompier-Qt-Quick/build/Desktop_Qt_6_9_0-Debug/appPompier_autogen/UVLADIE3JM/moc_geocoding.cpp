@@ -45,6 +45,7 @@ template <> constexpr inline auto Geocoding::qt_create_metaobjectdata<qt_meta_ta
         "latitude",
         "longitude",
         "code_postal",
+        "adresse_complete",
         "onGeocodingFinished",
         "QNetworkReply*",
         "reply"
@@ -52,12 +53,12 @@ template <> constexpr inline auto Geocoding::qt_create_metaobjectdata<qt_meta_ta
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'coordonneesRecues'
-        QtMocHelpers::SignalData<void(double, double, QString)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Double, 3 }, { QMetaType::Double, 4 }, { QMetaType::QString, 5 },
+        QtMocHelpers::SignalData<void(double, double, QString, QString)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Double, 3 }, { QMetaType::Double, 4 }, { QMetaType::QString, 5 }, { QMetaType::QString, 6 },
         }}),
         // Slot 'onGeocodingFinished'
-        QtMocHelpers::SlotData<void(QNetworkReply *)>(6, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
+        QtMocHelpers::SlotData<void(QNetworkReply *)>(7, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 8, 9 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -82,7 +83,7 @@ void Geocoding::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     auto *_t = static_cast<Geocoding *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->coordonneesRecues((*reinterpret_cast< std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 0: _t->coordonneesRecues((*reinterpret_cast< std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4]))); break;
         case 1: _t->onGeocodingFinished((*reinterpret_cast< std::add_pointer_t<QNetworkReply*>>(_a[1]))); break;
         default: ;
         }
@@ -100,7 +101,7 @@ void Geocoding::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (Geocoding::*)(double , double , QString )>(_a, &Geocoding::coordonneesRecues, 0))
+        if (QtMocHelpers::indexOfMethod<void (Geocoding::*)(double , double , QString , QString )>(_a, &Geocoding::coordonneesRecues, 0))
             return;
     }
 }
@@ -137,8 +138,8 @@ int Geocoding::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Geocoding::coordonneesRecues(double _t1, double _t2, QString _t3)
+void Geocoding::coordonneesRecues(double _t1, double _t2, QString _t3, QString _t4)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2, _t3);
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2, _t3, _t4);
 }
 QT_WARNING_POP

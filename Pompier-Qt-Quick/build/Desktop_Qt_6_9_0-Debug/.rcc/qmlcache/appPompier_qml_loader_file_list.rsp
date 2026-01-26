@@ -10,3 +10,5 @@
 /qt/qml/Pompier/ui/InterventionForm.qml
 /qt/qml/Pompier/ui/InfoCard.qml
 /qt/qml/Pompier/ui/StatusBadge.qml
+/qt/qml/Pompier/ui/InterventionsList.qml
+/qt/qml/Pompier/ui/EmptyTab.qml
