@@ -3,6 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Effects
 
+
 Rectangle {
     color: "white"
     radius: 16
@@ -15,6 +16,42 @@ Rectangle {
         shadowVerticalOffset: 4
         shadowColor: "#15000000"
         shadowBlur: 0.5
+    }
+
+
+    function validateForm() {
+        var ok = true
+        var messages = []
+
+        // Adresse
+        if (champsAdresse.text === "") {
+            ok = false
+            messages.push("Veuillez saisir l'adresse du sinistre")
+        }
+
+        // Type d'intervention
+        if (interventionType.currentIndex < 0) {
+            ok = false
+            messages.push("Veuillez sélectionner le type d'intervention")
+        }
+
+        // Gravité
+        if (graviteLayout.selectedIndex < 0) {
+            ok = false
+            messages.push("Veuillez sélectionner le niveau de gravité")
+        }
+
+        // Si erreur, afficher un message
+        if (!ok) {
+            for (var i = 0; i < messages.length; i++) {
+                console.log("Validation erreur: " + messages[i])
+            }
+            // Optionnel : utiliser ton signal backend pour afficher un popup
+            //superviseur.messageInfo(messages.join("\n"))
+            errorDialog.open()
+        }
+
+        return ok
     }
 
     ColumnLayout {
@@ -352,6 +389,16 @@ Rectangle {
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }
+
+                        onClicked: {
+                            champsAdresse.text = ""
+                            interventionType.currentIndex = "0"
+                            graviteLayout.selectedIndex = -1
+                            nbVictimes.text = 0
+                            commentaireUrgence.text = ""
+                            //superviseur.annulerCreationFiche()
+                        }
+
                     }
 
                     Button {
@@ -380,12 +427,14 @@ Rectangle {
                         }
 
                         onClicked: {
-                            superviseur.getAdresse(champsAdresse.text)
-                            superviseur.getType(interventionType.model[interventionType.currentIndex].value)
-                            superviseur.getGravite(graviteLayout.selectedIndex)
-                            superviseur.getNbVictime(nbVictimes.text)
-                            superviseur.getCommentaire(commentaireUrgence.text)
-                            superviseur.getHeure(dateHeure1.text, dateHeure2.text)
+                            if (validateForm()) {
+                                superviseur.getAdresse(champsAdresse.text)
+                                superviseur.getType(interventionType.model[interventionType.currentIndex].value)
+                                superviseur.getGravite(graviteLayout.selectedIndex)
+                                superviseur.getNbVictime(nbVictimes.text)
+                                superviseur.getCommentaire(commentaireUrgence.text)
+                                superviseur.getHeure(dateHeure1.text, dateHeure2.text)
+                            }
                         }
                     }
                 }

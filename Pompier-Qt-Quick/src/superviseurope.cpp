@@ -85,7 +85,7 @@ void SuperviseurOPE::getHeure(QString date, QString heure)
         return;
     }
 
-    qDebug() << "Date/heure valide :" << m_dateHeure;
+    qDebug() << "Date/heure :" << m_dateHeure;
 }
 
 void SuperviseurOPE::getLonLatGeocoding(double lat, double lon, QString code_postal)
@@ -108,6 +108,7 @@ void SuperviseurOPE::getLonLatGeocoding(double lat, double lon, QString code_pos
 void SuperviseurOPE::creerFicheUrgence(double latitude, double longitude)
 {
     qDebug() << "Latitude:" << latitude << "Longitude:" << longitude;
+
 }
 
 void SuperviseurOPE::calculerDistanceMin()

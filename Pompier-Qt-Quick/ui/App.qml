@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import QtQuick.Effects
+
 
 ApplicationWindow {
     id: appWindow
@@ -55,7 +57,7 @@ ApplicationWindow {
                     title: "Caserne"
                     headerColor: "#2563eb"
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 180
+                    Layout.preferredHeight: 200
 
                     cardContent: ColumnLayout {
                         anchors.fill: parent
@@ -178,4 +180,203 @@ ApplicationWindow {
             }
         }
     }
+
+
+
+    Dialog {
+        id: errorDialog
+        modal: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+        width: Math.min(parent ? parent.width * 0.6 : 400, 500)
+
+        // Entrée avec animation
+        enter: Transition {
+            NumberAnimation {
+                property: "opacity"
+                from: 0.0
+                to: 1.0
+                duration: 200
+                easing.type: Easing.OutCubic
+            }
+            NumberAnimation {
+                property: "scale"
+                from: 0.9
+                to: 1.0
+                duration: 200
+                easing.type: Easing.OutBack
+            }
+        }
+
+        exit: Transition {
+            NumberAnimation {
+                property: "opacity"
+                from: 1.0
+                to: 0.0
+                duration: 150
+            }
+        }
+
+        background: Rectangle {
+            id: bgRect
+            radius: 16
+            color: "white"
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                shadowEnabled: true
+                shadowColor: "#30000000"
+                shadowVerticalOffset: 8
+                shadowHorizontalOffset: 0
+                shadowBlur: 24
+            }
+        }
+
+        contentItem: ColumnLayout {
+            spacing: 20
+
+            // Icône d'erreur animée
+            Item {
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: 64
+                Layout.preferredHeight: 64
+
+                Rectangle {
+                    id: iconCircle
+                    anchors.centerIn: parent
+                    width: 64
+                    height: 64
+                    radius: 32
+                    color: "#fee2e2"
+
+                    // Animation de pulsation au démarrage
+                    SequentialAnimation on scale {
+                        running: errorDialog.visible
+                        NumberAnimation { from: 0.8; to: 1.0; duration: 300; easing.type: Easing.OutBack }
+                    }
+                }
+
+                // Icône X
+                Canvas {
+                    id: errorIcon
+                    anchors.centerIn: parent
+                    width: 32
+                    height: 32
+
+                    onPaint: {
+                        var ctx = getContext("2d")
+                        ctx.clearRect(0, 0, width, height)
+                        ctx.strokeStyle = "#dc2626"
+                        ctx.lineWidth = 3
+                        ctx.lineCap = "round"
+
+                        // Ligne gauche-droite
+                        ctx.beginPath()
+                        ctx.moveTo(8, 8)
+                        ctx.lineTo(24, 24)
+                        ctx.stroke()
+
+                        // Ligne droite-gauche
+                        ctx.beginPath()
+                        ctx.moveTo(24, 8)
+                        ctx.lineTo(8, 24)
+                        ctx.stroke()
+                    }
+
+                    NumberAnimation on rotation {
+                        running: errorDialog.visible
+                        from: -10
+                        to: 0
+                        duration: 400
+                        easing.type: Easing.OutElastic
+                    }
+                }
+            }
+
+            // Titre
+            Text {
+                Layout.alignment: Qt.AlignHCenter
+                text: "Erreur de validation"
+                font.pixelSize: 20
+                font.weight: Font.DemiBold
+                color: "#1f2937"
+            }
+
+            // Message d'erreur
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: errorMessage.implicitHeight + 24
+                radius: 8
+                color: "#fef2f2"
+                border.color: "#fecaca"
+                border.width: 1
+
+                Text {
+                    id: errorMessage
+                    anchors.centerIn: parent
+                    anchors.margins: 12
+                    width: parent.width - 24
+                    text: "Veuillez remplir tous les champs obligatoires marqués d'un astérisque (*)"
+                    wrapMode: Text.Wrap
+                    font.pixelSize: 14
+                    color: "#991b1b"
+                    horizontalAlignment: Text.AlignHCenter
+                    lineHeight: 1.4
+                }
+            }
+
+            // Bouton OK personnalisé
+            Button {
+                id: okButton
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: 120
+                Layout.preferredHeight: 44
+                text: "Compris"
+
+                contentItem: Text {
+                    text: okButton.text
+                    font.pixelSize: 15
+                    font.weight: Font.Medium
+                    color: "white"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                background: Rectangle {
+                    radius: 8
+                    color: okButton.down ? "#b91c1c" : (okButton.hovered ? "#dc2626" : "#ef4444")
+
+                    Behavior on color {
+                        ColorAnimation { duration: 150 }
+                    }
+
+                    layer.enabled: true
+                    layer.effect: MultiEffect {
+                        shadowEnabled: true
+                        shadowColor: okButton.down ? "#00000000" : "#40dc2626"
+                        shadowVerticalOffset: 2
+                        shadowHorizontalOffset: 0
+                        shadowBlur: 4
+                    }
+                }
+
+                onClicked: errorDialog.accept()
+
+                // Animation au survol
+                scale: okButton.down ? 0.95 : 1.0
+                Behavior on scale {
+                    NumberAnimation { duration: 100 }
+                }
+            }
+        }
+
+        // Centrer le Dialog
+        Component.onCompleted: {
+            if (parent) {
+                x = (parent.width - width) / 2
+                y = (parent.height - height) / 2
+            }
+        }
+    }
 }
+
+
