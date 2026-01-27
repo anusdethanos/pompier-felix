@@ -42,4 +42,10 @@ public:
 
 private:
     QList<Intervention> m_interventions;
+
+    void         afficherNbInter();
+
+signals:
+    void compterNbInter(int nb_inter_en_cours);
+
 };

@@ -76,19 +76,48 @@ Rectangle {
                         color: tabButton.isActive ? "#fee2e2" : "#dc2626"
 
                         Text {
+                            id: idNotif
                             anchors.centerIn: parent
-                            text: "3"
+                            text: "0"
                             font.pixelSize: 11
                             font.bold: true
                             color: tabButton.isActive ? "#dc2626" : "white"
+
+                            Behavior on text {
+                                SequentialAnimation {
+                                    NumberAnimation {
+                                        target: idNotif
+                                        property: "scale"
+                                        to: 1.3
+                                        duration: 150
+                                    }
+                                    NumberAnimation {
+                                        target: idNotif
+                                        property: "scale"
+                                        to: 1.0
+                                        duration: 150
+                                    }
+                                }
+                            }
+                        }
+
+
+                        Connections {
+                            target: interventionModel
+
+                            function onCompterNbInter(nb_inter_en_cours) {
+                                idNotif.text = nb_inter_en_cours
+                            }
+
                         }
                     }
                 }
-
                 onClicked: root.tabChanged(modelData.value)
             }
         }
-
         Item { Layout.fillWidth: true }
+    }
+    onTabChanged: {
+            interventionModel.chargerDepuisBDD()
     }
 }

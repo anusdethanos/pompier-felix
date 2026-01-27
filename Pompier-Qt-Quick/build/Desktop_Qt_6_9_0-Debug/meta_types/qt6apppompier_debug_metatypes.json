@@ -97,13 +97,27 @@
                 "methods": [
                     {
                         "access": "public",
-                        "index": 0,
+                        "index": 1,
                         "name": "chargerDepuisBDD",
                         "returnType": "void"
                     }
                 ],
                 "object": true,
                 "qualifiedClassName": "InterventionModel",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "nb_inter_en_cours",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "compterNbInter",
+                        "returnType": "void"
+                    }
+                ],
                 "superClasses": [
                     {
                         "access": "public",

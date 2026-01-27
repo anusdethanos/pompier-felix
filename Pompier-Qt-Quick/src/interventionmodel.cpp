@@ -62,4 +62,21 @@ void InterventionModel::chargerDepuisBDD()
     }
 
     endResetModel();
+    afficherNbInter();
 }
+
+void InterventionModel::afficherNbInter()
+{
+    QSqlQuery query;
+    int nb_inter_value = 0;
+
+    query.exec("SELECT COUNT(*) AS nb FROM interventions WHERE statut = 'en_cours'");
+
+    if (query.next()) {
+        nb_inter_value = query.value("nb").toInt();
+    }
+
+    emit compterNbInter(nb_inter_value);
+
+}
+

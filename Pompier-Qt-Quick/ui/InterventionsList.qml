@@ -182,6 +182,45 @@ Rectangle {
                     }
                 }
 
+                Button {
+                    id: refreshButton
+                    text: "↻"
+                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: 36
+
+                    background: Rectangle {
+                        radius: 6
+                        color: refreshButton.pressed ? "#f3f4f6" : "white"
+                        border.color: "#d1d5db"
+                        border.width: 1
+                    }
+
+                    contentItem: Text {
+                        id: idTextRefreshButton
+                        text: refreshButton.text
+                        font.pixelSize: 12
+                        color: "#374151"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+
+                    onClicked: {
+                        rotationAnimation.start()
+
+                        listView.model = null
+                        listView.model = interventionModel //ici
+                    }
+
+                    RotationAnimation {
+                        id: rotationAnimation
+                        target: idTextRefreshButton
+                        from: 0
+                        to: 360
+                        duration: 500
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+
                 Item { Layout.fillWidth: true }
             }
         }
@@ -277,23 +316,55 @@ Rectangle {
                                 maximumLineCount: 1
                             }
 
+                            // RowLayout {
+                            //     spacing: 16
+                            //     Layout.fillWidth: true
+
+                            //     Rectangle {
+                            //         width: 80
+                            //         height: 24
+                            //         radius: 4
+                            //         color: model.gravite === "Élevée" ? "#fee2e2" : (model.gravite === "Moyen" ? "#fef3c7" : "#DEDEDE") //"#d1fae5"
+
+                            //         Text {
+                            //             anchors.centerIn: parent
+                            //             text: "🔴 " + model.gravite
+                            //             font.pixelSize: 11
+                            //             color: model.gravite === "Élevée" ? "#991b1b" : (model.gravite === "Moyen" ? "#92400e" : "#065f46")
+                            //         }
+                            //     }
+
                             RowLayout {
                                 spacing: 16
                                 Layout.fillWidth: true
 
                                 Rectangle {
-                                    width: 80
+                                    width: 90
                                     height: 24
                                     radius: 4
-                                    color: model.gravite === "Élevée" ? "#fee2e2" : (model.gravite === "Moyen" ? "#fef3c7" : "#d1fae5")
+                                    color: {
+                                        if (model.gravite === "Urgence") return "#fee2e2"
+                                        else if (model.gravite === "Normal") return "#fef3c7"
+                                        else return "#d1fae5"  // Faible
+                                    }
 
                                     Text {
                                         anchors.centerIn: parent
-                                        text: "🔴 " + model.gravite
+                                        text: {
+                                            if (model.gravite === "Urgence") return "🔴 Urgence"
+                                            else if (model.gravite === "Normal") return "🟠 Normal"
+                                            else return "🟢 Faible"
+                                        }
                                         font.pixelSize: 11
-                                        color: model.gravite === "Élevée" ? "#991b1b" : (model.gravite === "Moyen" ? "#92400e" : "#065f46")
+                                        font.bold: true
+                                        color: {
+                                            if (model.gravite === "Urgence") return "#dc2626"
+                                            else if (model.gravite === "Normal") return "#f59e0b"
+                                            else return "#10b981"  // Faible
+                                        }
                                     }
                                 }
+
 
                                 Rectangle {
                                     width: 100
